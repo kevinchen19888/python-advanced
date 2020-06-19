@@ -26,7 +26,7 @@ print("读取的行:", file.__next__())
 print("读取的行:", file.__next__())
 
 # 写入
-# file.write("hello world\n")
+# file.write("hello world/n")
 # file.flush()
 # print(file.read())
 # 文件定位
@@ -46,3 +46,6 @@ print("读取的行:", file.__next__())
 # print(os.getcwd())
 # 删除目录
 # os.rmdir("D:/Data/pythonWorkspace/python-advanced/basic/newDir")
+
+# 返回指定目录下的所有文件/文件夹
+print(os.listdir("D:/Data/pythonWorkspace/python-advanced/basic"))

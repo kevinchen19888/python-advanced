@@ -61,4 +61,5 @@ def defined_exception():
         print("自定义异常")
 
 
-defined_exception()
+# defined_exception()
+print(sum([1, 2, 3]))
