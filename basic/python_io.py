@@ -1,4 +1,3 @@
-# --coding:utf-8
 import os
 
 # input = input("请输入:")
