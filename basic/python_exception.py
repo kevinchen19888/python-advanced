@@ -7,19 +7,19 @@ def exception_demo():
         try:
             readline = fh.readline()
         finally:
-            print("关闭文件")
+            print('关闭文件')
             fh.write("")  # 此处出错会被外面的except捕捉
             # fh.close()
     # except: # 会捕获所有异常
     except (IOError, SyntaxError):
-        print("error:没有找到对应文件或文件夹")
+        print('error:没有找到对应文件或文件夹')
     # except BaseException:  # 所有异常的基类
     #     print("获取所有异常")
     else:  # 如果没有出现异常
         fh.close()
         print(fh.closed)
     finally:
-        print("finally最终都会执行")
+        print('finally最终都会执行')
 
 
 # exception_demo()
