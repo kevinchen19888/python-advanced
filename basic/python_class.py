@@ -56,7 +56,7 @@ class ClassTest:
 
 # ============================
 # Python 子类继承父类构造函数说明
-class Father(object):
+class Father:
     def __init__(self, name):
         self.name = name
         print("Father __init__:", self.name)
@@ -66,14 +66,74 @@ class Father(object):
         return self.name
 
 
-class Son(Father):
-    def get_name(self):
-        print("Son_getName")
+class Mother(object):
+    # 私有属性,以"__"开头
+    __mo_private_attr = 0
+
+    def __init__(self, name):
+        self.name = name
+        print("Mother create")
+
+    def get_mother_name(self):
+        self.__mo_private_method()
         return self.name
 
+    # 私有方法,以"__"开头
+    def __mo_private_method(self):
+        print("mo_private_method")
 
-if __name__ == '__main__':
-    son = Son('hello')
-    print(son.get_name())
+    # 受保护方法,只能被基类和子类访问
+    def _protected_method(self):
+        print("_protected_method")
+
+    def count(self):
+        self.__mo_private_attr += 1
+        print(self.__mo_private_attr)
+
+
+class Son(Father, Mother):
+    def __init__(self, name):
+        # super(Son, self).__init__(name) # 调用父类构造方法
+        Father.__init__(self, name)  # 调用父类构造的另一种写法
+        print("Son create")
+        self.name = name
+
+        def get_name(self):
+            print("Son_getName")
+            Mother._protected_method(self)
+            return self.name
+
+
+# if __name__ == '__main__':
+#     son = Son('hello')
+#     #     son.get_name()
+#     print(son.get_mother_name())
+#     son.count()
+
+
 # 子类不重写 __init__，实例化子类时，会自动调用父类定义的 __init__
 # 如果重写了__init__ 时，实例化子类，就不会调用父类已经定义的 __init__
+
+# ====================私有属性&方法demo
+son = Son('hello')
+print(son.get_mother_name())
+son.count()
+son.get_name()
+
+
+# ====================运算符重载demo
+class Vector:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
+    def __str__(self):
+        return 'Vector (%d, %d)' % (self.a, self.b)
+
+    def __add__(self, other):
+        return Vector(self.a + other.a, self.b + other.b)
+
+# v1 = Vector(2, 10)
+# v2 = Vector(5, -2)
+# print(v1 + v2)
+# print(v1.__str__())
