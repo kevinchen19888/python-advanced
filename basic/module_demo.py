@@ -10,4 +10,4 @@ def sum_number(*args):
     return sum
 
 
-sum_number(1, 2, 11)
+print(sum_number(1, 2, 11))

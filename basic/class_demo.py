@@ -57,6 +57,7 @@ class ClassTest:
 # ============================
 # Python 子类继承父类构造函数说明
 class Father:
+
     def __init__(self, name):
         self.name = name
         print("Father __init__:", self.name)
@@ -79,7 +80,8 @@ class Mother(object):
         return self.name
 
     # 私有方法,以"__"开头
-    def __mo_private_method(self):
+    @staticmethod
+    def __mo_private_method():
         print("mo_private_method")
 
     # 受保护方法,只能被基类和子类访问
