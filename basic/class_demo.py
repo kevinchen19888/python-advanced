@@ -1,4 +1,5 @@
 """类的创建与使用"""
+import types
 
 
 class Employee:
@@ -117,13 +118,14 @@ class Son(Father, Mother):
 # 如果重写了__init__ 时，实例化子类，就不会调用父类已经定义的 __init__
 
 # ====================私有属性&方法demo
-son = Son('hello')
-print(son.get_mother_name())
-son.count()
-son.get_name()
+# son = Son('hello')
+# print(son.get_mother_name())
+# son.count()
+# son.get_name()
 
 
-# ====================运算符重载demo
+# ====================================
+# 运算符重载demo
 class Vector:
     def __init__(self, a, b):
         self.a = a
@@ -135,7 +137,102 @@ class Vector:
     def __add__(self, other):
         return Vector(self.a + other.a, self.b + other.b)
 
+
 # v1 = Vector(2, 10)
 # v2 = Vector(5, -2)
 # print(v1 + v2)
 # print(v1.__str__())
+
+
+# ======================================
+# 类的继承与多态
+
+class Student:
+
+    def __init__(self, name):
+        self.__name = name
+
+    def print(self):
+        print("this obj's name is:", self.__name)
+
+    def set_name(self, name):
+        self.__name = name
+
+
+# s = Student('kevin')
+# s.print()
+
+class Animal:
+    def run(self):
+        print('Animal run...')
+
+
+class Dog(Animal):
+
+    def hel(self):
+        print()
+
+    def run(self):
+        print('Dog run...')
+
+
+dog = Dog()
+
+
+# dog.run()
+
+# 获取变量的数据类型
+# 但最好总是优先使用isinstance()判断类型，可以将指定类型及其子类“一网打尽”
+# print(type(dog))
+# print(type(lambda x: print(x)))
+# print(isinstance(dog, Animal))
+# print(isinstance(dog, Dog))
+
+# 判断一个对象是否是函数,可使用types模块
+# print(type(abs) == types.BuiltinFunctionType)
+
+# 操作或行情对象的状态
+# print(hasattr(dog, 's'))
+# print(hasattr(dog, 'run')) #获取对象的方法
+# setattr(dog, 's', 'kevin')
+# print(getattr(dog, 's'))
+
+
+def run_polymorphic(animal):
+    animal.run()
+
+
+# run_polymorphic(Animal())
+# run_polymorphic(Dog())
+
+# 获取对象所以属性和方法
+# print(dir(dog))
+
+
+class Stu(object):
+    name = 'Stu'
+
+
+# ======================================
+def class_attr_demo():
+    """
+    实例属性和类属性 demo
+    """
+    global s
+    s = Stu()
+    print(s.name)
+    print(Stu.name)
+    s.name = 'new Stu'
+    print(s.name)
+    print(Stu.name)
+    # 删除实例属性后,实例对象使用的是类属性
+    # 千万不要对实例属性和类属性使用相同的名字，因为相同名称的实例属性将屏蔽掉类属性
+    del s.name
+    print(s.name)
+
+
+# class_attr_demo()
+
+
+class Student(object):
+    pass
