@@ -10,9 +10,7 @@ file = open("io.txt", "r+")
 # print(file.encoding)
 # print(file.name)
 # print(file.mode)
-# print(file.closed)
-# file.close()
-# print(file.closed)
+print(file.closed)
 
 # 读取
 # print("读取的string:", file.read(10))
@@ -47,4 +45,10 @@ print("读取的行:", file.__next__())
 # os.rmdir("D:/Data/pythonWorkspace/python-advanced/basic/newDir")
 
 # 返回指定目录下的所有文件/文件夹
-print(os.listdir("D:/Data/pythonWorkspace/python-advanced/basic"))
+# print(os.listdir("D:/Data/pythonWorkspace/python-advanced/basic"))
+
+
+# 通过 with 语句来替代 try...finally 完成 流的释放
+with open('io.txt', 'r') as f:
+    # print("读取到的内容:", f.read())
+    print("读取到的内容:", f.read(11))

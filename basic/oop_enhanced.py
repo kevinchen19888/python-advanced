@@ -2,7 +2,7 @@
 
 
 # 使用__slots__
-
+from enum import Enum, unique
 from types import MethodType
 
 
@@ -198,10 +198,19 @@ class Std(object):
     def __str__(self):
         return 'Std object(name is: %s)' % self.name
 
+    # 动态返回一个属性,注意，只有在没有找到属性的情况下，才调用__getattr__，已有的属性，比如name，不会在__getattr__中查找
+    def __getattr__(self, attr):
+        if attr == 'score':
+            return 99
+        if attr == 'age':
+            return lambda: 25
+
 
 s = Std("kevin")
 
 
+# print(s.abc)
+# print(s.score)
 # print(s)
 
 # 如果一个类想被用于for ... in循环，类似list或tuple那样，就必须实现一个__iter__()方法，该方法返回一个迭代对象，
@@ -241,6 +250,136 @@ def fib_list_deom():
     print(f[0])
     print(f[3])
 
+
 # fib_list_deom()
+
+# 通过 __getattr__ 动态调整属性的作用:可以针对完全动态的情况作调用
+"""
+例子:如果要写SDK，给每个URL对应的API都写一个方法，那得累死，而且，API一旦改动，SDK也要改,
+利用完全动态的__getattr__，我们可以写出一个链式调用,这样，无论API怎么变，
+SDK都可以根据URL实现完全动态的调用，而且，不随API的增加而改变！
+"""
+
+
+class Chain(object):
+
+    def __init__(self, path=''):
+        self._path = path
+
+    # 链式调用
+    def __getattr__(self, path):
+        return Chain('%s/%s' % (self._path, path))
+
+    def __str__(self):
+        return self._path
+
+    # 通过 __call__ 直接对实例进行调用
+    def __call__(self, path):
+        return Chain('%s/%s' % (self._path, path))
+
+    __repr__ = __str__
+
+
+def def_and_call_obj():
+    print(Chain().status.user.list)
+    # 如果要把参数放入,如:GET /users/:user/repos,调用时，需要把:user替换为实际用户名,如下:
+    print(Chain().users("kevin").repos)
+    # 直接对实例对象进行调用(通过__call__方法)
+    chain = Chain()
+    print(chain('hello'))
+
+
+# def_and_call_obj()
+
+
+class StudentCall(object):
+    def __init__(self, name=''):
+        self.name = name
+
+    # 对实例直接进行调用
+    def __call__(self):
+        print('My name is %s.' % self.name)
+
+
+# s = StudentCall('kevin')
+# s()
+
+
+# 如何判断变量是对象还是函数,需要判断一个对象是否能被调用，能被调用的对象就是一个Callable对象
+
+def is_callable():
+    print(callable(StudentCall()))
+    print(callable(max))
+    print(callable('str'))
+
+
+# is_callable()
+
+
+# =================================================
+# 使用枚举类
+Month = Enum('Month', ('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'))
+
+
+# print(Month.Jan)
+def enum_all():
+    global name
+    # 枚举它的所有成员：
+    for name, member in Month.__members__.items():
+        print('name:', name, 'member:', member)
+
+
+# enum_all()
+
+# 如果需要更精确地控制枚举类型，可以从Enum派生出自定义类：
+@unique  # @unique装饰器可以帮助我们检查保证没有重复值。
+class WeekDay(Enum):
+    Mon = 1
+    Tue = 2
+    Wez = 3
+    Thu = 4
+    Fri = 5
+    Sat = 6
+    Sun = 7
+
+
+# 以多种方式访问枚举
+def access_enum():
+    mon = WeekDay.Mon
+    print(mon)
+    print(WeekDay['Mon'])
+    print(WeekDay(1))
+    print(WeekDay.Mon.value)
+    print(WeekDay.Mon == mon)
+    # print(WeekDay(8)) # ValueError
+
+
+# access_enum()
+
+
+# =================================================
+# 使用元类
+# 动态语言和静态语言最大的不同，就是函数和类的定义，不是编译时定义的，而是运行时动态创建的
+
+
+class Hello(object):
+    def hello(self, name='world'):
+        print('Hello, %s.' % name)
+
+
+# h = Hello()
+# print(type(h))
+
+# type()函数既可以判断并返回一个对象的类型，又可以创建出新的类型 todo
+
+def fn(self, name='world'):  # 先定义函数
+    print('Hello, %s.' % name)
+
+
+# 通过type()函数创建出Hello1类，而无需通过class Hello1(object)...的定义：
+Hello1 = type('Hello1', (object,), dict(hello=fn))  # 创建Hello class
+h = Hello1()
+h.hello()
+
 
 
