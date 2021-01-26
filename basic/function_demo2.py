@@ -65,10 +65,11 @@ dic = {'city': 'beijing'}
 # =============================================
 # 命名关键字参数:限制关键字参数的名字
 def limit_key_paras(age, name, *, city, job):
-    print("age:", age, "name:", name, city, job)
+    print("age:%s,name:%s,city:%s,job:%s" % (age, name, city, job))
 
 
 # limit_key_paras(10, "kevin", city='bj', job='program')
+
 
 # 如果函数定义中已经有了一个可变参数，后面跟着的命名关键字参数就不再需要一个特殊分隔符*了：
 def limit_key_paras2(name, age, *args, city, job):
@@ -123,6 +124,7 @@ def enumerate_demo():
 
 # ===========================================
 # 列表生成式
+# 在一个列表生成式中，for前面的if ... else是表达式，而for后面的if是过滤条件，不能带else
 def list_gen(list):
     for i in range(1, 11):
         list.append(i)
@@ -155,7 +157,7 @@ def fib(max):
 # fib(6)
 
 
-# 如果一个函数定义中包含yield关键字，那么这个函数就不再是一个普通函数，而是一个generator：
+# 如果一个函数定义中包含 yield 关键字，那么这个函数就不再是一个普通函数，而是一个 generator：
 # 变成generator的函数，在每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。
 def fib2(max):
     n, a, b = 0, 0, 1
@@ -165,9 +167,13 @@ def fib2(max):
         n = n + 1
     return 'done'
 
-    # for i in fib2(6):
-    #     print(i)
 
+def generator_demo():
+    for i in fib2(6):
+        print(i)
+
+
+# generator_demo()
 
 # ===========================================
 # 可以使用isinstance()判断一个对象是否是Iterator对象：
@@ -180,6 +186,7 @@ def is_iterator(it):
 
 
 # is_iterator((i for i in range(10)))
+
 # Iterable 转 Iterator
 # print('is Iterator:', isinstance(iter([1, 2]), Iterator))
 
@@ -200,6 +207,7 @@ def map_demo():
 
 
 # map_demo()
+
 
 def add_demo(x, y):
     return x + y
@@ -306,6 +314,5 @@ def anonymity_fuc(li):
     it = map(lambda x: x * x, li)
     for i in it:
         print(i)
-
 
 # anonymity_fuc([1, 2, 3])

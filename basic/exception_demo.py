@@ -4,7 +4,7 @@ import logging
 
 def exception_demo():
     try:
-        fh = open("io.txt", "r")
+        fh = open("test_doc/io.txt", "r")
         try:
             readline = fh.readline()
         finally:
