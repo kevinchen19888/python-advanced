@@ -177,7 +177,7 @@ def generator_demo():
 
 # ===========================================
 # 可以使用isinstance()判断一个对象是否是Iterator对象：
-
+# 可以被next()函数调用并不断返回下一个值的对象称为迭代器：Iterator todo
 from collections.abc import Iterator
 
 

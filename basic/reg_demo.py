@@ -39,6 +39,7 @@ def __sub():
 
 # __sub()
 
+
 # =========================================================
 # re.compile 函数,用于编译正则表达式，生成一个正则表达式（ Pattern ）对象，供 match() 和 search() 这两个函数使用。
 def __compile():
@@ -51,3 +52,47 @@ def __compile():
 
 
 # print(re.findall(r'[^a-zA-Z]', "www.baidu.com")) # 匹配除字母外的所有字符
+
+# 强烈建议使用Python的'r'前缀，就不用考虑转义的问题了：
+def search_demo():
+    search = re.search(r'^\w{3,4}[a-d|h]+', "aa2h")
+    if search:
+        print("匹配成功")
+
+
+# search_demo()
+
+
+# 使用正则进行字符串切分
+# print(re.split(r'[\s\,\;]+', 'a,b;; c  d'))
+def group_demo():
+    reg = r'^(\d{3})-(\d{3,8})$'
+    group = re.match(reg, "020-0755563")
+    print(group.group(0))
+    print(group.group(1))
+
+
+# 除了简单地判断是否匹配之外，正则表达式还有提取子串的强大功能。用()表示的就是要提取的分组（Group）。比如：
+# 注意到group(0)永远是原始字符串，group(1)、group(2)……表示第1、2、……个子串。
+# group_demo()
+
+t = '19:05:30'
+m = re.match(
+    r'^(0[0-9]|1[0-9]|2[0-3]|[0-9])\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])'
+    r'\:(0[0-9]|1[0-9]|2[0-9]|3[0-9]|4[0-9]|5[0-9]|[0-9])$',
+    t)
+# print(m.groups())
+
+
+def group_demo2():
+    match = re.match(r'(^(\d+)(0*))$', "102300")
+    if match:
+        print(match.groups())
+        print("匹配成功了")
+
+
+# group_demo2()
+
+c = re.compile(r'\d+')
+if c.match("0"):
+    print("compile 匹配了")
