@@ -6,8 +6,9 @@ def sum_number(*args):
     sum = 0
     for i in args:
         sum += i
-    print(globals())
+    # print(globals())
+    print("sum_number")
     return sum
 
 
-sum_number(1, 2, 11)
+# sum_number(1, 2, 11)
