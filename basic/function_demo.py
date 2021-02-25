@@ -1,5 +1,8 @@
 # ===============================================
 # python 函数使用示例
+import functools
+
+
 def printme(list, str):
     list.append(str)
     # print(list)
@@ -36,8 +39,8 @@ def variable_args(arg1, *args):
 # lambda函数拥有自己的命名空间，且不能访问自有参数列表之外或全局命名空间里的参数。
 
 def lambda_sum():
-    sum = lambda a, b: a + b
-    print(sum)
+    sum2 = lambda a, b: a + b
+    print(sum2)
     return
 
 
@@ -56,5 +59,12 @@ def variable_test(a, b):
     return
 
 
-variable_test(10, 20)
-print(overall_a)
+# variable_test(10, 20)
+# print(overall_a)
+
+# ============================================
+# 使用偏函数:设定参数的默认值，降低函数调用的难度
+
+# 对 int 函数 base参数设置默认值
+int2 = functools.partial(int, base=2)
+print(int2('100'))
