@@ -8,7 +8,7 @@ conn = mysql.connector.connect(host='localhost',
                                port='3306',
                                user='root',
                                password='root',
-                               database='python_test')
+                               database='test')
 cursor = conn.cursor()
 
 
@@ -25,7 +25,7 @@ def create_table():
     # cursor.close()
 
 
-# create_table()
+create_table()
 
 
 # 执行查询

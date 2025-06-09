@@ -11,5 +11,27 @@ import pdb
 
 s = '0'
 n = int(s)
-pdb.set_trace()  # 运行到这里会自动暂停
-print(10 / n)
+
+
+# pdb.set_trace()  # 运行到这里会自动暂停
+# print(10 / n)
+
+
+def condition_demo(a):
+    if a > 0:
+        print("a val is:", a)
+    elif a == 0:
+        print("a val is 0")
+    else:
+        print("a is less than 0")
+
+
+# condition_demo(2)
+
+def for_demo():
+    lis1 = [1, 2, 3]
+    for i, val in enumerate(lis1):
+        print(i, val)
+
+
+# for_demo()

@@ -47,12 +47,12 @@ class ClassTest:
 
 # ============================
 # 对象回收
-# test = ClassTest()
+test = ClassTest()
 
 
 # del test  #
 # 销毁对象
-# print(test)
+print(test)
 # print(id(test))  # 对象id
 
 # ============================
@@ -109,7 +109,7 @@ class Son(Father, Mother):
 
 # if __name__ == '__main__':
 #     son = Son('hello')
-#     #     son.get_name()
+#     son.get_name()
 #     print(son.get_mother_name())
 #     son.count()
 
