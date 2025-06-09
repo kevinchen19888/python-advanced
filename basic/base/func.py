@@ -78,4 +78,11 @@ def func_demo8(*args):
 def func_demo9(*args,**kwargs):
     print(f'可变参数：{args},\t可变关键字参数：{kwargs}')
 
-func_demo9(1,2,3,a=1,b=2)
+# func_demo9(1,2,3,a=1,b=2)
+
+
+"""
+from...import...语法从模块中直接导入需要使用的函数
+"""
+from func2 import fac
+print(fac(5))
