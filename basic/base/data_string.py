@@ -186,4 +186,4 @@ def string_demo10():
     print(b.decode('utf-8'))  # 哈哈
     print(c.decode('gbk'))  # 哈哈
 
-string_demo10()
+# string_demo10()

@@ -53,4 +53,4 @@ def if_demo2():
         y = 5 * x + 3
     print(f'{y = }')
 
-if_demo2()
+# if_demo2()

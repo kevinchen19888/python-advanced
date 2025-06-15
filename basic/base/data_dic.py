@@ -6,9 +6,11 @@ todo:列表，集合，字典等可变类型不能作为key
 def dic_demo1():
     dic = {'age':10,'name':'kevin'}
     # print(dic)
-    print(len( dic))
-    for key in dic:
-        print(key, dic[key])
+    # print(len( dic))
+    # for key in dic:
+    #     print(key, dic[key])
+    for k in dic:
+        print(f'{k=},{dic[k]=}')
 
 # dic_demo1()
 

@@ -33,7 +33,7 @@ def upload(file_name):
 # upload("test.txt")
 
 # 使用语法糖
-# upload('hello')
+upload('hello')
 
 # 使用 @wraps 去掉装饰器作用,只执行原函数
 # upload.__wrapped__('Python从新手到大师.pdf')
@@ -45,6 +45,12 @@ def fei(n) -> int:
         return 1
     return fei(n-1) + fei(n - 2)
 
-for i in range(1,21):
-    print(fei(i))
+
+def exex_fei():
+    start_time = time.time()
+    for i in range(1, 40):
+        print(fei(i))
+    print("执行fei时间：%s" % (time.time() - start_time))
+
+# exex_fei()
 

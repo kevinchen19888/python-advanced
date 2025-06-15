@@ -7,11 +7,11 @@ import functools
 
 def calc(init_val,op_func,*args,**kwargs):
     items = list(args) + list(kwargs.values())
-    res = init_val
+    resp = init_val
     for item in items:
         if type(item) in (int ,float):
-            res = op_func(res,item)
-    return  res
+            resp = op_func(resp,item)
+    return  resp
 
 def add(a,b):
     return a + b
@@ -49,6 +49,6 @@ def func_lambda_demo():
 
 int2 = functools.partial(int, base=2)
 int8 = functools.partial(int, base=8)
-print(int2('1010'))
-print(int8('1'))
+# print(int2('1010'))
+# print(int8('1'))
 

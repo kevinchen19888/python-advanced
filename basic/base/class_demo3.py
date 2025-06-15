@@ -7,7 +7,6 @@ class Suite(Enum):
     """花色枚举"""
     SPADE,HEART,DIAMOND,CLUB = range(4)
 
-
 class Card:
     """牌"""
     def __init__(self, suite: Suite, face: int):

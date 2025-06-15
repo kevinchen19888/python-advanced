@@ -73,4 +73,4 @@ def main():
     total = sum([emp.get_salary() for emp in emps])
     print('公司总月薪为：%d' % total)
 
-main()
+# main()
