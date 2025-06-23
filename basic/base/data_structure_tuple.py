@@ -36,6 +36,7 @@ def  tuple_demo2():
     # print(i, j, k)  # 1 10 100
     # 通过星号表达式，我们可以让一个变量接收多个值
     d,*e = a
+    print(d)
     print(type(e))
     print(e)
 

@@ -33,7 +33,7 @@ def upload(file_name):
 # upload("test.txt")
 
 # 使用语法糖
-upload('hello')
+# upload('hello')
 
 # 使用 @wraps 去掉装饰器作用,只执行原函数
 # upload.__wrapped__('Python从新手到大师.pdf')

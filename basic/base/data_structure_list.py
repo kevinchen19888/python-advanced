@@ -30,6 +30,7 @@ import random
 
 
 def roll_dice():
+    # 定义一个列表长度为6的列表,默认值为0
     counters = [0] * 6
     # 模拟掷色子记录每种点数出现的次数
     for _ in range(6000):

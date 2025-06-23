@@ -38,6 +38,8 @@ class Poker:
         random.shuffle(self.cards)
     def deal(self):
         """发牌"""
+        if self.current >= len(self.cards):
+            raise RuntimeError('没有更多的牌了')
         card = self.cards[self.current]
         self.current += 1
         return card
@@ -74,5 +76,4 @@ def play():
         print(f'{player.name}: {[str(card) for card in player.cards]}')
 
 # play()
-
 

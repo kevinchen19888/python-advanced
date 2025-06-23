@@ -41,8 +41,10 @@ def dic_demo3():
     print(dic.items())
     # for k, v in dic.items():
     #     print(k, v)
-    # 更新操作
+    # 更新操作,存在则更新,不存在则添加
     dic.update({'age':20,'sex':'male'})
+    # 直接赋值,存在则覆盖,不存在则添加
+    dic['age'] = 21
     # print(dic)
     # 3.9版本可以使用 | 更新
     dic = dic | {'age':20,'sex':'male'}
@@ -50,10 +52,11 @@ def dic_demo3():
     # 删除操作
     # dic.pop('age')
     del dic['age']
+    dic.pop('sex')
     print(dic)
-    dic.popitem()
-    dic.clear()
-    print( dic)
+    # dic.popitem()
+    # dic.clear()
+    # print( dic)
 
 # dic_demo3()
 
@@ -89,3 +92,15 @@ def dic_demo5():
 
 
 # dic_demo5()
+
+"""
+解包操作符,合并字典并保留最新值
+"""
+def dic_demo6():
+    dict1 = {'a': 1, 'b': 2}
+    dict2 = {'b': 3, 'c': 4}
+    merged = {**dict1, **dict2}  # 输出: {'a': 1, 'b': 3, 'c': 4}
+    print(merged)
+
+
+# dic_demo6()

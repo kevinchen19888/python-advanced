@@ -35,7 +35,6 @@ def gen_code(*,code_len):
 # print(random.sample(string.digits + string.ascii_letters, 4))
 # print(gen_code(code_len=4))
 
-
 def is_prime(num: int) -> bool:
     """
     判断一个正整数是不是质数
